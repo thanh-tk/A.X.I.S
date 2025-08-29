@@ -1,0 +1,16 @@
+id: T-XX
+title: Example Task
+objective: Example objective.
+scope:
+  - Step one
+constraints:
+  - Do not break tests
+inputs:
+  - README.md
+outputs:
+  - README.md
+acceptance:
+  - Tests pass
+checks:
+  - python scripts/taskcard_lint.py tasks/TEMPLATE.yaml
+risk: low

@@ -1,0 +1,8 @@
+{
+  "plan": "example",
+  "files_to_create_or_edit": ["README.md"],
+  "test_plan": "pytest",
+  "commands": ["echo hi"],
+  "risk_checks": "none",
+  "rollback": "git reset --hard"
+}
