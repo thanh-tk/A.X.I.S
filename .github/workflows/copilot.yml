@@ -5,18 +5,25 @@ on:
     types: [opened, synchronize]
   issues:
     types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
 
 permissions:
   contents: write
   issues: write
   pull-requests: write
+  actions: write
 
 jobs:
   copilot:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
     steps:
       - uses: actions/checkout@v3
-      - uses: github/copilot@v1
+        with:
+          fetch-depth: 0
+      - uses: github/copilot-preview/actions@v0
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          copilotToken: ${{ secrets.COPILOT_TOKEN }}
           
