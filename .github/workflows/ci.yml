@@ -1,0 +1,42 @@
+name: CI
+
+on: [push, pull_request]
+
+env:
+  AGENT_PROTOCOL: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest jsonschema pyyaml black flake8
+      - name: Lint task card
+        run: python scripts/taskcard_lint.py tasks/TEMPLATE.yaml
+      - name: Validate agent output fixtures
+        run: |
+          python scripts/validate_agent_output.py tests/fixtures/valid_agent_output.json
+          if python scripts/validate_agent_output.py tests/fixtures/invalid_agent_output.json 2>/dev/null; then exit 1; fi
+      - name: Run safety lints
+        run: python tools/check_safety_lints.py
+      - name: Run black
+        run: black --check .
+      - name: Run flake8
+        run: flake8 .
+      - name: Run tests
+        run: pytest -q
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Run Danger
+        run: npx danger@11 ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

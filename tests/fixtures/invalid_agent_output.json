@@ -1,0 +1,7 @@
+{
+  "files_to_create_or_edit": [],
+  "test_plan": "pytest",
+  "commands": [],
+  "risk_checks": "none",
+  "rollback": "git reset --hard"
+}

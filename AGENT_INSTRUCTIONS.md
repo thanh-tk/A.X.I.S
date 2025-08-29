@@ -11,6 +11,7 @@
 * Audience: core contributors, skill authors.
 * Coverage: lifecycle, interfaces, safety, performance, configurability, testing, and versioning.
 * Out of scope: full README (lives in `README.md`), marketing, installation screenshots.
+* See [docs/CODING_AGENT_PROTOCOL.md](docs/CODING_AGENT_PROTOCOL.md) for task cards and Agent Output JSON that guide repository contributions.
 
 ---
 

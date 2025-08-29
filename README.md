@@ -6,6 +6,15 @@
 
 ---
 
+## How the Coding Agent Works
+
+Development tasks are expressed as YAML task cards and executed by a deterministic agent.
+The workflow and JSON reply format are documented in
+[docs/CODING_AGENT_PROTOCOL.md](docs/CODING_AGENT_PROTOCOL.md).
+See that guide to understand planning, testing, and pull‑request steps.
+
+---
+
 ## 1) Purpose & Guardrails
 
 * **Goal:** Automate Elite Dangerous chores (long travel, cargo loops, carrier ops) with player‑programmable routines.
